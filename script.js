@@ -59,7 +59,9 @@ function addTransactionDOM(transaction) {
   listItem.innerHTML = `
     ${transaction.text} <span>${sign} ${Math.abs(
     transaction.amount,
-  )}</span> <button class='delete-btn'>x</button>
+  )}</span> <button class='delete-btn' onclick='removeTransaction(${
+    transaction.id
+  })'>x</button>
   `;
 
   // Add to DOM
@@ -96,6 +98,14 @@ function init() {
 }
 
 init();
+
+// Remove transaction by ID
+function removeTransaction(id) {
+  transactions = transactions.filter(transaction => transaction.id !== id);
+
+  // reinit
+  init();
+}
 
 // Add transaction Eventlistener
 form.addEventListener('submit', addTransaction);
