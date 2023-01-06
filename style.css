@@ -100,10 +100,14 @@ input[type='number'] {
   width: 100%;
 }
 
-input,
 .btn:focus,
 .delete-btn:focus {
   outline: 0;
+}
+
+input:focus {
+  outline: #9c88ff;
+  border: 1px solid #9c88ff;
 }
 
 .list {
