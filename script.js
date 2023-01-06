@@ -7,14 +7,20 @@ const text = document.getElementById('text');
 const amount = document.getElementById('amount');
 const addBtn = document.getElementById('add-btn');
 
-const INITIAL_TRANSACTIONS = [
-  { id: 1, text: 'Flower', amount: -20 },
-  { id: 2, text: 'Salary', amount: 300 },
-  { id: 3, text: 'Book', amount: -10 },
-  { id: 4, text: 'Camera', amount: 150 },
-];
+// const INITIAL_TRANSACTIONS = [
+//   { id: 1, text: 'Flower', amount: -20 },
+//   { id: 2, text: 'Salary', amount: 300 },
+//   { id: 3, text: 'Book', amount: -10 },
+//   { id: 4, text: 'Camera', amount: 150 },
+// ];
+//let transactions = INITIAL_TRANSACTIONS;
 
-let transactions = INITIAL_TRANSACTIONS;
+const localStorageTransactions = JSON.parse(
+  localStorage.getItem('transactions'),
+);
+
+let transactions =
+  localStorage.getItem('transactions') !== null ? localStorageTransactions : [];
 
 // Add transaction
 function addTransaction(e) {
@@ -33,6 +39,9 @@ function addTransaction(e) {
     addTransactionDOM(transaction);
 
     upadateValues();
+
+    // store in LS
+    updateLocalStorage();
 
     // Clear inputs
     text.value = '';
@@ -89,6 +98,11 @@ function upadateValues() {
   expenseEl.innerText = `$${expense}`;
 }
 
+// Update local storage transaction
+function updateLocalStorage() {
+  localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
 // Init app
 function init() {
   list.innerHTML = '';
@@ -102,6 +116,9 @@ init();
 // Remove transaction by ID
 function removeTransaction(id) {
   transactions = transactions.filter(transaction => transaction.id !== id);
+
+  // Remove in LS
+  updateLocalStorage();
 
   // reinit
   init();
