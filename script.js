@@ -70,7 +70,9 @@ function addTransactionDOM(transaction) {
     transaction.amount,
   )}</span> <button class='delete-btn' onclick='removeTransaction(${
     transaction.id
-  })'>x</button>
+  })'><i class="fas fa-trash"></i></button>
+
+  <button class='edit-btn'><i class="fas fa-edit"></i></button>
   `;
 
   // Add to DOM
