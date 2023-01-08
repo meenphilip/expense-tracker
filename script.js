@@ -5,7 +5,7 @@ const list = document.getElementById('list');
 const form = document.getElementById('form');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
-const addBtn = document.getElementById('add-btn');
+const clearBtn = document.getElementById('clear-btn');
 
 // const INITIAL_TRANSACTIONS = [
 //   { id: 1, text: 'Flower', amount: -20 },
@@ -126,5 +126,35 @@ function removeTransaction(id) {
   init();
 }
 
+function clearTransactions() {
+  let result = confirm('Are You Sure?');
+  if (result) {
+    // // First way of doing it
+    // list.innerHTML = '';
+
+    //second way of doing it & Faster
+    while (list.firstChild) {
+      //get ul then remove the first list-items recursive
+      list.removeChild(list.firstChild);
+    }
+  } else {
+    return;
+  }
+
+  // Set balance,income & expense to zero
+  balance.innerText = '$0.00';
+  incomeEl.innerText = '$0.00';
+  expenseEl.innerText = '$0.00';
+
+  //clear from LS
+  clearLocalStorage();
+}
+
+// Clear Local Storage
+function clearLocalStorage() {
+  return localStorage.clear();
+}
+
 // Add transaction Eventlistener
 form.addEventListener('submit', addTransaction);
+clearBtn.addEventListener('click', clearTransactions);
