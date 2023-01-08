@@ -30,7 +30,6 @@ h1 {
 }
 
 h3 {
-  border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
   margin: 40px 0 10px;
 }
@@ -47,6 +46,26 @@ h4 {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+}
+.flex-area {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #bbb;
+}
+
+.fas {
+  font-size: 12px;
+}
+.clear-btn {
+  align-self: flex-end;
+  cursor: pointer;
+  background-color: #c0392b;
+  box-shadow: var(--box-shadow);
+  color: #fff;
+  border: 0;
+  font-size: 14px;
+  margin: 10px 0 16px;
+  padding: 8px;
 }
 
 .inc-exp-container > div {
@@ -151,6 +170,27 @@ input:focus {
   transition: opacity 0.3s ease-in-out;
 }
 
+.edit-btn {
+  cursor: pointer;
+  background-color: #2ecc71;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 2px 5px;
+  position: absolute;
+  top: 50%;
+  /* right: -12.5%; */
+  right: 100%;
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
 .list li:hover .delete-btn {
+  opacity: 1;
+}
+
+.list li:hover .edit-btn {
   opacity: 1;
 }
